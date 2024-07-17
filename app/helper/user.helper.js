@@ -1,43 +1,26 @@
-import { authController } from '../api/index'
-import { homePage, loginPage } from '../page/index'
-export class UsersHelper {
-  
-  createUser() {
-    const newEmail = `test${crypto.randomUUID()}@test.com`
+import {expect } from '@playwright/test';
+import crypto from 'crypto';
 
-    cy.fixture('auth/new.user.json').then((user) => {
-      const userData = {
-        ...user,
-        email: newEmail
-      };
+const userData = {
+ "email": `test${crypto.randomUUID()}@test.com`,
+ "password": "superSecretPassword!!!",
+ "passwordRepeat": "superSecretPassword",
+ "securityAnswer": "Nadia",
+ "securityQuestion": {
+  "id": 5,
+  "question": "Maternal grandmother's first name?"
+ }
+};
 
-      authController.createNewUser(userData).then((response) => {
-        expect(response.status).to.eq(201);
-        Cypress.env('newUserData', userData);
-      });
+export async function createUser(request) {
 
-    });
-  }
+  const response = await request.post('/path/to/api/createUser', {
+   data: userData
+  });
 
- signInAsNewUser(email, password) {
-    cy.session([email, password], () => {
-      loginPage.open()
-      loginPage.welcomeBanner.clickCloseWelcomeBannerButton()
-      loginPage.cookiesWindow.clickDismissCookiesButton()
-      loginPage.setEmailField(email)
-      loginPage.setPasswordField(password)
-      loginPage.clickSubmitBtn()
-      homePage.header.expectLoaded()
-      homePage.header.getBasket().should('be.visible')
-    }, {
-      /* validate() {
-        app.homePage.open()
-        app.homePage.header.getBasket().should('be.visible')
-      }, */
-      cacheAcrossSpecs: true,
+  expect(response.status()).toBe(200);
 
-    })
-  }
+  const newUserData = await response.body();
 
-}
-
+  return newUserData;
+ }

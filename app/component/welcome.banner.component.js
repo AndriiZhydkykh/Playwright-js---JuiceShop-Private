@@ -1,4 +1,4 @@
-export default class WelcomeBanner {
+export class WelcomeBanner {
   constructor(page) {
     this.page = page;
   }

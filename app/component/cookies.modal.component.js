@@ -1,4 +1,4 @@
-export default class CookiesWindow {
+export class CookiesWindow {
  constructor(page) {
    this.page = page;
  }

@@ -1,4 +1,5 @@
-export default class Header {
+import { expect } from '@playwright/test';
+export class Header {
  constructor(page) {
    this.page = page;
  }

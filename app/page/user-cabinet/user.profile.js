@@ -1,6 +1,6 @@
 import { PageHolder } from '../../page.holder';
 
-export default class UserProfilePage extends PageHolder {
+export class UserProfilePage extends PageHolder {
   constructor(page) {
     super(page);
   }

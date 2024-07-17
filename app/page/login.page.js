@@ -1,9 +1,16 @@
-export default class LoginPage extends PageHolder {
+import { PageHolder }  from "../page.holder";
+import { Header, WelcomeBanner, CookiesWindow } from "../../app/component";
+/**
+   * @param {import('@playwright/test').Page} page
+   */
+
+export class LoginPage extends PageHolder {
  constructor(page) {
-   super(page);
-   this.header = header;
-   this.welcomeBanner = welcomeBanner;
-   this.cookiesWindow = cookiesWindow;
+   super()
+   this.page = page
+   this.header = new Header(this.page);
+   this.welcomeBanner = new WelcomeBanner(this.page);
+   this.cookiesWindow = new CookiesWindow(this.page);
  }
 
  get emailField() { return this.page.locator('input#email'); }

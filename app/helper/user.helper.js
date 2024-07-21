@@ -1,10 +1,10 @@
-import { expect } from '@playwright/test';
+import { AuthController } from '../../api/index'
 import crypto from 'crypto';
 
 const userData = {
  "email": `test${crypto.randomUUID()}@test.com`,
  "password": "superSecretPassword!!!",
- "passwordRepeat": "superSecretPassword",
+ "passwordRepeat": "superSecretPassword!!!",
  "securityAnswer": "Nadia",
  "securityQuestion": {
   "id": 5,
@@ -12,15 +12,10 @@ const userData = {
  }
 };
 
+
+
 export async function createUser(request) {
-
- const response = await request.post('/path/to/api/createUser', {
-  data: userData
- });
-
- expect(response.status()).toBe(200);
-
- const newUserData = await response.body();
-
- return newUserData;
+ const authController = new AuthController(request);
+ const response = await authController.createNewUser(userData);
+ return response
 }

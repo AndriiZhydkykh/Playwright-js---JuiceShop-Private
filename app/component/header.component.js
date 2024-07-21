@@ -1,7 +1,9 @@
+import { Component } from '../page.holder';
 import { expect } from '@playwright/test';
-export class Header {
+
+export class Header extends Component{
  constructor(page) {
-   this.page = page;
+  super(page)
  }
 
  get logoButton() { return this.page.locator('app-navbar button[aria-label="Back to homepage"]'); }
@@ -51,10 +53,10 @@ export class Header {
  }
 
  async expectLoaded() {
-   await expect(this.getLogoButton()).toBeVisible();
-   await expect(this.getSearchButton()).toBeVisible();
-   await expect(this.getAccountButton()).toBeVisible();
-   await expect(this.getLanguageButton()).toBeVisible();
- }
+  await expect(this.logoButton).toBeVisible();
+  await expect(this.searchButton).toBeVisible();
+  await expect(this.accountButton).toBeVisible();
+  await expect(this.languageButton).toBeVisible();
+}
 }
 

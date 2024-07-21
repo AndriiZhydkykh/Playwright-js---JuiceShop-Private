@@ -1,14 +1,16 @@
-export class WelcomeBanner {
-  constructor(page) {
-    this.page = page;
-  }
+import { Component } from "../page.holder";
 
-  get closeWelcomeBannerButton() {
-    return this.page.locator('button[aria-label="Close Welcome Banner"]');
-  }
+export class WelcomeBanner extends Component{
+ constructor(page) {
+  super(page)
+ }
 
-  async clickCloseWelcomeBannerButton() {
-    await this.closeWelcomeBannerButton.click();
-  }
+ get closeWelcomeBannerButton() {
+  return this.page.locator('button[aria-label="Close Welcome Banner"]');
+ }
+
+ async clickCloseWelcomeBannerButton() {
+  await this.closeWelcomeBannerButton.click();
+ }
 }
 

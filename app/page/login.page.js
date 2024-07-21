@@ -1,16 +1,12 @@
-import { PageHolder }  from "../page.holder";
+import { PageHolder } from "../page.holder";
 import { Header, WelcomeBanner, CookiesWindow } from "../../app/component";
-/**
-   * @param {import('@playwright/test').Page} page
-   */
 
 export class LoginPage extends PageHolder {
  constructor(page) {
-   super()
-   this.page = page
-   this.header = new Header(this.page);
-   this.welcomeBanner = new WelcomeBanner(this.page);
-   this.cookiesWindow = new CookiesWindow(this.page);
+  super(page)
+  this.header = new Header(this.page);
+  this.welcomeBanner = new WelcomeBanner(this.page);
+  this.cookiesWindow = new CookiesWindow(this.page);
  }
 
  get emailField() { return this.page.locator('input#email'); }
@@ -18,19 +14,19 @@ export class LoginPage extends PageHolder {
  get submitBtn() { return this.page.locator('button#loginButton'); }
 
  async open() {
-   await super.open('#/login');
+  await super.open('#/login');
  }
 
  async setEmailField(text) {
-   await this.emailField.fill(text);
+  await this.emailField.fill(text);
  }
 
  async setPasswordField(text) {
-   await this.passwordField.fill(text);
+  await this.passwordField.fill(text);
  }
 
  async clickSubmitBtn() {
-   await this.submitBtn.click();
+  await this.submitBtn.click();
  }
 }
 

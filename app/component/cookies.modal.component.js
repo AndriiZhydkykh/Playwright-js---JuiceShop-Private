@@ -1,6 +1,8 @@
-export class CookiesWindow {
+import { Component } from "../page.holder";
+
+export class CookiesWindow extends Component{
  constructor(page) {
-   this.page = page;
+  super(page)
  }
 
  get dismissCookiesButton() {

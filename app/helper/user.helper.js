@@ -1,4 +1,4 @@
-import {expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import crypto from 'crypto';
 
 const userData = {
@@ -14,13 +14,13 @@ const userData = {
 
 export async function createUser(request) {
 
-  const response = await request.post('/path/to/api/createUser', {
-   data: userData
-  });
+ const response = await request.post('/path/to/api/createUser', {
+  data: userData
+ });
 
-  expect(response.status()).toBe(200);
+ expect(response.status()).toBe(200);
 
-  const newUserData = await response.body();
+ const newUserData = await response.body();
 
-  return newUserData;
- }
+ return newUserData;
+}

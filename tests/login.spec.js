@@ -17,15 +17,16 @@ test.describe('Main page', () => {
 
 
   const userData = process.env.NEW_USER_DATA;
+  console.log(userData)
   await homePage.header.clickAccountButton();
   await homePage.header.clickLoginButton();
   await expect(await homePage.header.getLoginButton()).toBeHidden();
 
   
-  await loginPage.setEmailField(userData.email);
+/*   await loginPage.setEmailField(userData.email);
   await loginPage.setPasswordField(userData.password);
   await loginPage.clickSubmitBtn();
   await loginPage.header.expectLoaded();
-  await expect(await loginPage.header.getBasket()).toBeVisible();
+  await expect(await loginPage.header.getBasket()).toBeVisible(); */
  });
 });

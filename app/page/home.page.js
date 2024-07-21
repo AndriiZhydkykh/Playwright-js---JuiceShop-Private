@@ -15,8 +15,8 @@ export class HomePage extends PageHolder {
  }
 
  async open() {
-    super.open('#/');
-    this.header.expectLoaded();
+   await super.open('#/');
+   await this.header.expectLoaded();
  }
 }
 

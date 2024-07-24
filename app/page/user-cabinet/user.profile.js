@@ -1,6 +1,6 @@
-import { PageHolder } from '../../page.holder';
+import { App } from '../../page.holder';
 
-export class UserProfilePage extends PageHolder {
+export class UserProfilePage extends App {
  constructor(page) {
   super(page);
  }
@@ -15,7 +15,7 @@ export class UserProfilePage extends PageHolder {
 
 
  async open() {
-  await super.open('#/profile');
+  await super.open('profile');
  }
 }
 

@@ -5,7 +5,7 @@ import { regNewUserDate } from '../app/data/user.data';
 import { test, expect } from '@playwright/test';
 
 test.describe('Main page', () => {
-
+ test.use({ storageState: { cookies: [], origins: [] } });
  test('ID-1 - Login via existing user - random user', async ({ page, request }) => {
   await createUser(request)
   const homePage = new HomePage(page)
@@ -24,7 +24,7 @@ test.describe('Main page', () => {
   await expect(await loginPage.header.getBasket()).toBeVisible();
  });
  
- test('ID-2 - Login via existing user - static user', async ({ page }) => {
+ test.only('ID-2 - Login via existing user - static user', async ({ page }) => {
   const { email, password } = userData.staticUsers.buyers.testingTalk;
 
   const homePage = new HomePage(page)

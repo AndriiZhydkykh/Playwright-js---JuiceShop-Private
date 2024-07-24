@@ -7,9 +7,6 @@ export class PageHolder {
   this.page = page;
  }
 
- async open(url) {
-  await this.page.goto('/' + url);
- }
 }
 
 export class App extends PageHolder {

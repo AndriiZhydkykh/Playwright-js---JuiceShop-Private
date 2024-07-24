@@ -1,7 +1,7 @@
-import { PageHolder } from "../page.holder";
+import { App } from "../page.holder";
 import { Header, WelcomeBanner, CookiesWindow } from "../../app/component";
 
-export class LoginPage extends PageHolder {
+export class LoginPage extends App {
  constructor(page) {
   super(page)
   this.header = new Header(this.page);

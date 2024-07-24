@@ -23,7 +23,7 @@ export const loginWithNewUser = base.test.extend({
  await use(loginPage);
  },
  userData: async ({ authController }, use) => {
-  const userData = authController.userData.data; // Получение userData из authController
+  const userData = authController.userData; // Получение userData из authController
   await use(userData);
 },
 });

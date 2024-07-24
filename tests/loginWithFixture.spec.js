@@ -11,7 +11,7 @@ loginWithNewUser('example test', async ({ homePage, loginPage, authController, u
   await homePage.header.clickLoginButton();
   await expect(await homePage.header.getLoginButton()).toBeHidden();
 
-  await loginPage.setEmailField(userData.email);
+  await loginPage.setEmailField(userData.data.email);
   await loginPage.setPasswordField(regNewUserDate.password);
   await loginPage.clickSubmitBtn();
   await loginPage.header.expectLoaded();

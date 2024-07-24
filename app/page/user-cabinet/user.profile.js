@@ -13,8 +13,9 @@ export class UserProfilePage extends PageHolder {
   return this.emailField;
  }
 
+
  async open() {
-  await super.open('/profile');
+  await super.open('#/profile');
  }
 }
 

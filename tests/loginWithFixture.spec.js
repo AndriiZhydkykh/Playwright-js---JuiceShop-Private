@@ -2,7 +2,6 @@ import { loginWithNewUser, expect } from '../fixture/login.fixture';
 import { regNewUserDate } from '../app/data/user.data';
 
 loginWithNewUser('example test', async ({ homePage, loginPage, authController, userData }) => {
-  console.log(userData); // Данные пользователя из ответа
   await homePage.open();
   await homePage.welcomeBanner.clickCloseWelcomeBannerButton();
   await homePage.cookiesWindow.clickDismissCookiesButton();

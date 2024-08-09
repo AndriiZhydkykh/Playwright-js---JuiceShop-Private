@@ -24,7 +24,7 @@ test.describe('Main page', () => {
   await expect(await loginPage.header.getBasket()).toBeVisible();
  });
  
- test.only('ID-2 - Login via existing user - static user', async ({ page }) => {
+ test('ID-2 - Login via existing user - static user', async ({ page }) => {
   const { email, password } = userData.staticUsers.buyers.testingTalk;
 
   const homePage = new HomePage(page)

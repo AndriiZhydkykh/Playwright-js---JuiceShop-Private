@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ Auth-with-static-user ]
 permissions:
-  contents: write
+  contents: write  # Ensure the token has write permissions for the repo
   pages: write
   id-token: write
 
@@ -42,26 +42,11 @@ jobs:
     if: always()
     needs: test
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-    - uses: actions/checkout@v4  # Checkout the repository
-      with:
-        fetch-depth: 0  # Ensure the full repo is checked out
-    - name: Download Playwright report artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: playwright-report
-        path: playwright-report/
-    - name: Check contents of playwright-report
-      run: ls -R playwright-report/
-    - name: Deploy Playwright report to gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub Actions token
-      run: |
-        git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-        git checkout -B gh-pages  # Create or switch to gh-pages branch
-        rm -rf *  # Remove existing contents from the branch
-        cp -r playwright-report/* .  # Copy the report contents to the root
-        git add .
-        git commit -m "Deploy Playwright report to GitHub Pages"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages --force  # Force push to gh-pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
+      

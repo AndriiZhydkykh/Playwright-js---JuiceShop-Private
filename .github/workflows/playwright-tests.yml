@@ -45,6 +45,7 @@ jobs:
         path: playwright-report/
 
   deploy:
+    if: always()
     needs: test
     environment:
       name: github-pages

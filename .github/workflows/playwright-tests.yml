@@ -50,7 +50,7 @@ jobs:
     if: always()
     needs: test
     environment:
-      name: github-pages
+      name: playwright-report
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:

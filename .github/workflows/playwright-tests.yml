@@ -14,8 +14,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-run-name: ${{ github.actor }} run playwright tests 🚀
-
 jobs:
   test:
     timeout-minutes: 60
@@ -44,15 +42,17 @@ jobs:
     - name: Upload Pages Artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: playwright-report/  
+        path: playwright-report/  # Путь к артефакту
 
   deploy:
     if: always()
     needs: test
     environment:
-      name: playwright-report
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
+      with:
+        artifact_name: playwright-report  # Указано имя артефакта для деплоя

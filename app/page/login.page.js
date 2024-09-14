@@ -2,32 +2,32 @@ import { App } from "../page.holder";
 import { Header, WelcomeBanner, CookiesWindow } from "../../app/component";
 
 export class LoginPage extends App {
- constructor(page) {
-  super(page)
-  this.header = new Header(this.page);
-  this.welcomeBanner = new WelcomeBanner(this.page);
-  this.cookiesWindow = new CookiesWindow(this.page);
- }
+    constructor(page) {
+        super(page)
+    }
+    header = new Header(this.page);
+    welcomeBanner = new WelcomeBanner(this.page);
+    cookiesWindow = new CookiesWindow(this.page);
+    #emailField = this.page.locator('input#email');
+    #passwordField = this.page.locator('input#password')
+    #submitBtn = this.page.locator('button#loginButton');
 
- get emailField() { return this.page.locator('input#email'); }
- get passwordField() { return this.page.locator('input#password'); }
- get submitBtn() { return this.page.locator('button#loginButton'); }
 
- async open() {
-  await super.open('#/login');
- }
+    async open() {
+        await super.open('#/login');
+    }
+    async setEmailField(text) {
+        await this.#emailField.fill(text);
+    }
 
- async setEmailField(text) {
-  await this.emailField.fill(text);
- }
+    async setPasswordField(text) {
+        await this.#passwordField.fill(text);
+    }
 
- async setPasswordField(text) {
-  await this.passwordField.fill(text);
- }
-
- async clickSubmitBtn() {
-  await this.submitBtn.click();
- }
+    async clickSubmitBtn() {
+        await this.#submitBtn.click();
+        await this.page.waitForLoadState();
+    }
 }
 
 

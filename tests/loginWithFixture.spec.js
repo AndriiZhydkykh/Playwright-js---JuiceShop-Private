@@ -5,7 +5,7 @@ loginWithNewUser('example test', async ({ homePage, loginPage, authController, u
   await homePage.open();
   await homePage.welcomeBanner.clickCloseWelcomeBannerButton();
   await homePage.cookiesWindow.clickDismissCookiesButton();
-
+  
   await homePage.header.clickAccountButton();
   await homePage.header.clickLoginButton();
   await expect(await homePage.header.getLoginButton()).toBeHidden();

@@ -42,4 +42,5 @@ test.describe('Main page', () => {
   await loginPage.header.expectLoaded();
   await expect(await loginPage.header.getBasket()).toBeVisible();
  });
-});
+})
+

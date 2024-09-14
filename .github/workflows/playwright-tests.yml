@@ -46,7 +46,7 @@ jobs:
     - uses: actions/checkout@v4  # Checkout the repository
       with:
         fetch-depth: 0  # Ensure the full repo is checked out
-    - name: Download Playwright report artifactфname: Playwright Tests
+    - name: Download Playwright report artifact name: Playwright Tests
 on:
   workflow_dispatch:
   push:

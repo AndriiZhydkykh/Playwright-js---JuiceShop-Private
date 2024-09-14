@@ -10,7 +10,7 @@ permissions:
   pages: write
   id-token: write
 
-run-name: ${{ github.actor }} run playwright tests 🚀
+run-name: ${{ github.actor }} run playwright tests 🚀🚀🚀
 
 concurrency:
   group: "pages"

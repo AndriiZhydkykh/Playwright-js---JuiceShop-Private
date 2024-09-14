@@ -1,15 +1,24 @@
 import base from '@playwright/test'
 import { AuthController } from '../api/index'
-import { regNewUserDate } from '../app/data/user.data'
 import { HomePage, LoginPage } from '../app/page/index'
-
-
-export const loginWithNewUser = base.test.extend({
+export const notAuthNewUser = base.test.extend({
  storageState: {
   cookies: [],
   origins: [],
 },
  authController: async ({request }, use) => {
+
+  const regNewUserDate = {
+    "email": `test${crypto.randomUUID()}@test.com`,
+    "password": "superSecretPassword!!!",
+    "passwordRepeat": "superSecretPassword!!!",
+    "securityAnswer": "Nadia",
+    "securityQuestion": {
+     "id": 5,
+     "question": "Maternal grandmother's first name?"
+    }
+   };
+
   const authController = new AuthController(request);
   const userData  = await authController.createNewUser(regNewUserDate);
   await use({ authController, userData });
@@ -23,7 +32,7 @@ export const loginWithNewUser = base.test.extend({
  await use(loginPage);
  },
  userData: async ({ authController }, use) => {
-  const userData = authController.userData; // Получение userData из authController
+  const userData = authController.userData; 
   await use(userData);
 },
 });

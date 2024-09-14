@@ -6,6 +6,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Main page', () => {
  test.use({ storageState: { cookies: [], origins: [] } });
+ 
  test('ID-1 - Login via existing user - random user', async ({ page, request }) => {
   await createUser(request)
   const homePage = new HomePage(page)

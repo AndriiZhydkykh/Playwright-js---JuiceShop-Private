@@ -1,3 +1,5 @@
+import crypto from 'crypto'
+
 export const correctUser = {
  "email": `test${crypto.randomUUID()}@test.com`,
  "password": "superSecretPassword!!!",

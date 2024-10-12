@@ -10,7 +10,7 @@ const { password } = staticUsers.buyers.testingTalk
   await userProfilePage.open()
   await expect(await userProfilePage.getEmailField()).toHaveValue(email)
  })
- test('ID-5 - Visit user profile page -error', async ({page}) => {
+ test('ID-5 - Visit user profile page - error', async ({page}) => {
     const userProfilePage = new UserProfilePage(page)
     await userProfilePage.open()
     await expect(await userProfilePage.getEmailField()).toHaveValue(password)
